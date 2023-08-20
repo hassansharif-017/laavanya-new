@@ -1,0 +1,7 @@
+
+        modified:   app/helpers.php
+        modified:   public/frontend/css/style.css
+        modified:   resources/views/frontend/partials/footer.blade.php
+        modified:   resources/views/frontend/partials/homepage2.blade.php
+        modified:   resources/views/frontend/search.blade.php
+database/migrations/2023_08_11_062344_add_status_to_menu_parents_table.php
