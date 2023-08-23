@@ -44,6 +44,7 @@ Route::get('/brand/{id}/{title}', [App\Http\Controllers\Frontend\BrandController
 Route::get('/frontend/getBrandGrid', [App\Http\Controllers\Frontend\BrandController::class, 'getBrandGrid'])->name('frontend.getBrandGrid');
 
 //Product
+Route::get('/products', [App\Http\Controllers\Frontend\ProductController::class, 'index'])->name('frontend.products');
 Route::get('/product/{id}/{title}', [App\Http\Controllers\Frontend\ProductController::class, 'getProductPage'])->name('frontend.product');
 Route::get('/frontend/getProductReviewsGrid', [App\Http\Controllers\Frontend\ProductController::class, 'getProductReviewsGrid'])->name('frontend.getProductReviewsGrid');
 

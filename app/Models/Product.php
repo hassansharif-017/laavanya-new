@@ -44,4 +44,8 @@ class Product extends Model
         'og_description',
         'og_keywords',
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

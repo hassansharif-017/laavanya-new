@@ -38,9 +38,16 @@
 
   <!-- Offer Section -->
   @if($section3->is_publish == 1)
-
   <section class="section offer-section" style="background-color: #F3ECDA; padding-top:50px">
     <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="swirl-short-videos-M" data-playlist="z1uBtU" data-playlist-name="Test"></div>
+          <div id="swirl-short-videos" data-code="feoaxhly"  data-sw="0"></div>
+        </div>
+      </div>
+      <br />
+      <br />
       <div class="row">
         <div class="col-md-12">
 
@@ -91,6 +98,62 @@
   </section>
   @endif
 
+  
+  <section class="section offer-section" style="background-color: #F3ECDA;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading text-center">
+            <div class="modern-div22">
+              <div class="header">
+
+                <img class="svg-icon" src="public/media/flower-header.svg" alt="">
+                <h1>Our Fabric Collection</h1>
+                <img class="svg-icon" src="public/media/flower-header-right.svg" alt="">
+                <!-- <button style="position: absolute; right:2rem; top: 2rem;">VIEW ALL</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        @php
+         shuffle($popular_products);
+         $popular_products = collect($popular_products)->take(4);
+        @endphp
+        @foreach ($popular_products as $row)
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="item-card" style="height: 320px;">
+              <div class="item-image">
+                @if(($row->is_discount == 1) && ($row->old_price !=''))
+                @php
+                $discount = number_format((($row->old_price - $row->sale_price)*100)/$row->old_price);
+                @endphp
+                <span class="item-label">{{ $discount }}% {{ __('Off') }}</span>
+                @endif
+                <a href="{{ route('frontend.product', [$row->id, $row->slug]) }}">
+                  <img src="{{ asset('public/media/'.$row->f_thumbnail) }}" alt="{{ $row->title }}" />
+                </a>
+              </div>
+              <div class="item-title">
+                <a href="{{ route('frontend.product', [$row->id, $row->slug]) }}">{{ str_limit($row->title) }}</a>
+              </div>
+            </div>
+          </div>
+        @endforeach
+
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <a href="{{ route('frontend.products') }}" class="btn theme-btn">
+            View More
+          </a>
+          <br />
+        </div>
+      </div>
+    </div>
+    <br />
+  </section>
   <!-- /Offer Section/ -->
 
   <section class="section offer-section" style="background-color: #F3ECDA;display: none;">
