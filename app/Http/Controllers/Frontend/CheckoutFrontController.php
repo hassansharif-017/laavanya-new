@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Models\Order_master;
 use App\Models\Order_item;
 use App\Models\Country;
+use App\Models\Coupon;
 use App\Models\Shipping;
 use App\Models\Product;
 use Cart;
@@ -94,6 +95,17 @@ class CheckoutFrontController extends Controller
 			$res['msg'] = array('oneError' => array(__('Oops! Your order is failed. Please product add to cart.')));
 			return response()->json($res);
 		}
+
+		$discountPercent = 0;
+		if(isset($request->coupon) && !empty($request->coupon)){
+			$coupon = Coupon::where('code', $request->coupon)->active()->first();
+			if (empty($coupon)) {
+				$res['msgType'] = 'error';
+				$res['msg'] = array('oneError' => array(__('Oops! Invalid Coupon Code Provided.')));
+				return response()->json($res);
+			}
+			$discountPercent = $coupon->percentage;
+		}
 		
 		$customer_id = '';
 		
@@ -150,7 +162,7 @@ class CheckoutFrontController extends Controller
 			
 			$validator = Validator::make($request->all(),[
 				'name' => 'required',
-				'email' => 'required',
+				// 'email' => 'required',
 				'phone' => 'required',
 				'country' => 'required',
 				'state' => 'required',
@@ -219,7 +231,7 @@ class CheckoutFrontController extends Controller
 				'shipping_title' => $shipping_title,
 				'shipping_fee' => $shipping_fee,
 				'name' => $request->input('name'),
-				'email' => $request->input('email'),
+				'email' => $request->has('email') ? $request->input('email') : '',
 				'phone' => $request->input('phone'),
 				'country' => $request->input('country'),
 				'state' => $request->input('state'),
@@ -243,6 +255,7 @@ class CheckoutFrontController extends Controller
 		
 		$index = 0;
 		$total_tax = 0;
+		$discountsArray = [];
 		foreach($CartDataList as $row){
 
 			$seller_id = $row->options->seller_id;
@@ -251,6 +264,12 @@ class CheckoutFrontController extends Controller
 			$total_price = $row->price*$row->qty;
 			
 			$total_tax = (($total_price*$tax_rate)/100);
+			$pricePlusVat = $total_price + $total_tax;
+
+			if (!isset($discountsArray[$order_master_id])){
+				$discountsArray[$order_master_id] = 0;
+			}
+			$discountsArray[$order_master_id] += $pricePlusVat * $discountPercent/100;
 			
 			$OrderItemData = array(
 				'order_master_id' => $order_master_id,
@@ -276,6 +295,13 @@ class CheckoutFrontController extends Controller
             //end stock qty in product table
 			$index++;
 		}
+		foreach ($discountsArray as $master_order_id => $discount) {
+			Order_master::where('id', $master_order_id)
+			->update([
+				'discount' => $discount,
+				'coupon_code' => $request->coupon,
+			]);
+		}
 		
 		if($index>0){
 			$intent = '';
@@ -297,6 +323,7 @@ class CheckoutFrontController extends Controller
 			$t_amount = comma_remove($total_amount);
 			
 			$totalAmount = $t_amount + $shippingFee;
+			$totalAmount = $totalAmount - array_sum($discountsArray);
 
 			//Stripe
 			if($payment_method_id == 3){

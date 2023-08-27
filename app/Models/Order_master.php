@@ -21,6 +21,7 @@ class Order_master extends Model
 	  'order_status_id',
 	  'total_qty',
 	  'total_price',
+	  'coupon_code',
 	  'discount',
 	  'tax',
 	  'subtotal',

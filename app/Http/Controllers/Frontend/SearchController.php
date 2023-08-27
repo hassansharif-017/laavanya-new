@@ -32,7 +32,8 @@ class SearchController extends Controller
 						->orWhere('users.shop_name', 'like', '%'.$search.'%');
 				})
 				->orderBy('products.id', 'desc')
-				->paginate(20);
+				->paginate(20)
+				->appends(request()->query());
 		}else{
 			$datalist = DB::table('products')
 				->join('users', 'products.user_id', '=', 'users.id')
@@ -49,7 +50,8 @@ class SearchController extends Controller
 						->orWhere('users.shop_name', 'like', '%'.$search.'%');
 				})
 				->orderBy('products.id', 'desc')
-				->paginate(20);
+				->paginate(20)
+				->appends(request()->query());
 		}
 		
 		for($i=0; $i<count($datalist); $i++){

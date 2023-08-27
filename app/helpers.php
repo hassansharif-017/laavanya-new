@@ -1060,11 +1060,11 @@ function BrandListForFilter(){
 
 //Color List for Filter
 function ColorList(){
-	return Menu_child::where('mega_menu_id', 1315)->selectRaw('item_label as name')->orderBy('id','asc')->get();
+	return Menu_child::where('mega_menu_id', 1315)->selectRaw('item_label as name, item_slug')->orderBy('id','asc')->get();
 }
 
 function PatternList(){
-	return Menu_child::where('mega_menu_id', 1316)->selectRaw('item_label as name')->orderBy('id','asc')->get();
+	return Menu_child::where('mega_menu_id', 1316)->selectRaw('item_label as name, item_slug')->orderBy('id','asc')->get();
 }
 
 function ColorListForFilter(){

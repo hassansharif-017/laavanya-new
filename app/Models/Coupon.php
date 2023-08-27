@@ -9,9 +9,14 @@ class Coupon extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'code', 
-		'expire_date', 
-		'percentage', 
-		'is_publish',
-    ];	
+        'code',
+        'expire_date',
+        'percentage',
+        'is_publish',
+    ];
+
+    public function scopeActive($query)
+    {
+        return $query->where('expire_date', '<=', now())->where('is_publish', 1);
+    }
 }

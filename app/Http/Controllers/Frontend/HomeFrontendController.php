@@ -11,6 +11,7 @@ use App\Models\Offer_ad;
 use App\Models\Brand;
 use App\Models\Tp_option;
 use App\Models\Section_manage;
+use App\Models\Testimonial;
 
 class HomeFrontendController extends Controller
 {
@@ -1292,6 +1293,10 @@ class HomeFrontendController extends Controller
         //dd($data);
         //Slider
         $data['slider'] = Slider::where('slider_type', '=', $PageVariation['home_variation'])->where('is_publish', '=', 1)->orderBy('id', 'desc')->get();
+
+
+        //Client Reviews
+        $data['client_reviews'] = Testimonial::where('status', '=', 'active')->orderBy('id', 'desc')->limit(20)->get();
         //Product Category
         $data['pro_category'] = Pro_category::where('is_publish', '=', 1)->where('lan', '=', $lan)->orderBy('id', 'desc')->get();
         //Offer & Ads - Position 1 (For Homepage 1)

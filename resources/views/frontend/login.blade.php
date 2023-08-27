@@ -101,6 +101,18 @@
 						@if (Route::has('frontend.register'))
 						<h3><a href="{{ route('frontend.register') }}">{{ __('Sign up for an account') }}</a></h3>
 						@endif
+
+						<div class="d-flex justify-content-evenly mt-4">
+							<a href="{{ url('authorized/google') }}">
+								<img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" height="40px">
+							</a>
+							<a class="ml-1 btn btn-primary align-self-center" href="{{ url('fb/redirect') }}" style="padding: 12px 35px; background: #4c6ef5;color: #ffffff; height:40px; font-size: 10px;" id="btn-fblogin">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+									<path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+								  </svg> Login with Facebook
+							</a>
+			
+						</div>
 					</div>
 				</div>
 			</div>

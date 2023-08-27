@@ -8,7 +8,7 @@
 
 						<ul class="top-list-1 ">
 
-							<li>Yes! You Do Need More Fabric</li>
+							<li>{{ $generalSettings['site_header_text_1'] }}</li>
 
 
 							<!-- <li><i class="bi bi-telephone"></i></li> -->
@@ -20,7 +20,7 @@
 
 						<ul class="top-list-1">
 
-							<li><i  style="font-family: 'EB Garamond';font-style: italic;"></i>Handpicked fabrics from weavers across India</li>
+							<li><i  style="font-family: 'EB Garamond';font-style: italic;"></i>{{ $generalSettings['site_header_text_2'] }}</li>
 
 
 							<!-- <li><i class="bi bi-telephone"></i></li> -->

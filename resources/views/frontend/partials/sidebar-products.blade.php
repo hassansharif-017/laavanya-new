@@ -24,7 +24,7 @@
                 <select  name="pattern" class="form-select form-select-sm" onchange=" $('#frmProductsSideBar').submit()">
                     <option value="" >Select Pattern</option>
                     @foreach ($PatternList as $row)
-                        <option {{ request()->has('pattern') && request('pattern') ==  $row->name?  'selected' : ''}} value="{{ $row->name }}">{{ $row->name }}</option>
+                        <option {{ request()->has('pattern') && request('pattern') ==   $row->item_slug?  'selected' : ''}} value="{{  $row->item_slug }}">{{ htmlspecialchars_decode($row->name) }}</option>
                     @endforeach
                 </select>
             </div>
@@ -33,7 +33,7 @@
                 <select  name="color" class="form-select form-select-sm" onchange=" $('#frmProductsSideBar').submit()">
                     <option value="" >Select Color</option>
                     @foreach ($ColorListForFilter as $row)
-                        <option {{ request()->has('color') && request('color') ==  $row->name?  'selected' : ''}} value="{{ $row->name }}">{{ $row->name }}</option>
+                        <option {{ request()->has('color') && request('color') ==  $row->item_slug?  'selected' : ''}} value="{{ $row->item_slug }}">{{ $row->name }}</option>
                     @endforeach
                 </select>
             </div>

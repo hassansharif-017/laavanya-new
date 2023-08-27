@@ -48,4 +48,8 @@ class Product extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    public function getModifiedAtAttribute(){
+        return $this->updated_at > $this->created_at ? $this->updated_at : $this->created_at;
+    }
 }

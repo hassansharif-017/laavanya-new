@@ -596,78 +596,55 @@
 
 
   <!--Testimonial-->
+@if (count($client_reviews) > 0)
+    <div style="background-color: #F3ECDA; padding: 0px;">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
 
-  <div style="background-color: #F3ECDA; padding: 0px;">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-
-          <div class="section-heading text-center">
-
-
-            <div class="modern-div22">
-              <div class="header">
-
-                <img style="width:90px" class="svg-icon" src="public/media/flower-header.svg" alt="">
-                <h1>Client Reviews</h1>
-                <img style="width:90px" class="svg-icon" src="public/media/flower-header-right.svg" alt="">
-                <!-- <button style="position: absolute; right:2rem; top: 2rem;">VIEW ALL</button> -->
+            <div class="section-heading text-center">
 
 
+              <div class="modern-div22">
+                <div class="header">
+
+                  <img style="width:90px" class="svg-icon" src="public/media/flower-header.svg" alt="">
+                  <h1>Client Reviews</h1>
+                  <img style="width:90px" class="svg-icon" src="public/media/flower-header-right.svg" alt="">
+                  <!-- <button style="position: absolute; right:2rem; top: 2rem;">VIEW ALL</button> -->
+
+
+                </div>
               </div>
+
+
             </div>
 
-
           </div>
-
         </div>
       </div>
-    </div>
 
-    <div class="container">
+      <div class="container">
+        <div class=" owl-carousel caro-common category-carousel">
+          @foreach ($client_reviews as $item)
+          <div class="item">
+            <div style=" display:grid; place-items:center;">
+              <img class="rounded-circle shadow-1-strong mb-4" src="{{asset('public/media/' . $item->image)}}" alt="avatar" style="width: 150px;">
+              <h5 class="mb-3">{{ $item->name }}</h5>
+              <p>{{ $item->designation }}</p>
+              <p class="text-muted" style="text-align: center;">
+                <i class="fas fa-quote-left pe-2"></i>
+                {{ $item->description }}
+              </p>
 
-      <div class="owl-carousel owl-theme">
-        <div class="item">
-          <div style=" display:grid; place-items:center;">
-            <img class="rounded-circle shadow-1-strong mb-4" src="public/frontend/images/ritika.jpg" alt="avatar" style="width: 150px;">
-            <h5 class="mb-3">Ritika Das</h5>
-            <p>UX Designer</p>
-            <p class="text-muted" style="text-align: center;">
-              <i class="fas fa-quote-left pe-2"></i>
-              Laavanya has been my go-to brand for customised fabric for years now. Their curated touch and attention to detail are what sets them apart!
-            </p>
-
+            </div>
           </div>
-        </div>
-        <div class="item">
-          <div style=" display:grid; place-items:center;">
-            <img class="rounded-circle shadow-1-strong mb-4" src="public/frontend/images/nilanjana.jpg" alt="avatar" style="width: 150px;">
-            <h5 class="mb-3">Nilanjana Sharma </h5>
-            <p>Housewife</p>
-            <p class="text-muted" style="text-align: center;">
-              <i class="fas fa-quote-left pe-2"></i>
-              I recently purchased from Laavanya for my daughter's wedding and I must say, it was a fantastic experience. Thank you, Laavanya, for making this a memorable experience
-            </p>
-
-          </div>
-        </div>
-        <div class="item">
-          <div style=" display:grid; place-items:center;">
-            <img class="rounded-circle shadow-1-strong mb-4" src="public/frontend/images/meenal.jpg" alt="avatar" style="width: 150px;">
-            <h5 class="mb-3"> Meenal Saluja </h5>
-            <p>Fashion designer</p>
-            <p class="text-muted" style="text-align: center;">
-              <i class="fas fa-quote-left pe-2"></i>
-              As a fashion designer, finding the right fabric can be a challenge. Laavanya made it a breeze for me. I highly recommend Laavanya to anyone in the fashion industry."
-            </p>
-
-          </div>
+          @endforeach
         </div>
 
       </div>
-
     </div>
-  </div>
+@endif
 
 
 

@@ -32,6 +32,14 @@
 												<input type="text" name="site_title" id="site_title" class="form-control parsley-validated" data-required="true" value="{{ $datalist['site_title'] }}">
 											</div>
 											<div class="form-group">
+												<label for="site_header_text_1">{{ __('Site Header Text-1') }}<span class="red">*</span></label>
+												<input type="text" name="site_header_text_1" id="site_header_text_1" class="form-control parsley-validated" data-required="true" value="{{ $datalist['site_header_text_1'] ?? '' }}">
+											</div>
+											<div class="form-group">
+												<label for="site_header_text_2">{{ __('Site Header Text-2') }}<span class="red">*</span></label>
+												<input type="text" name="site_header_text_2" id="site_header_text_2" class="form-control parsley-validated" data-required="true" value="{{ $datalist['site_header_text_2'] ?? '' }}">
+											</div>
+											<div class="form-group">
 												<label for="company">{{ __('Company') }}<span class="red">*</span></label>
 												<input type="text" name="company" id="company" class="form-control parsley-validated" data-required="true" value="{{ $datalist['company'] }}">
 											</div>

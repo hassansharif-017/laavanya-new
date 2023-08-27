@@ -74,7 +74,24 @@ config(['cart.tax' => $tax_rate]);
 				<div class="row">
 					<div class="col-lg-7">
 						<h5>{{ __('Shipping Information') }}</h5>
-						<p>{{ __('Already have an account?') }} <strong><a href="{{ route('frontend.login') }}">{{ __('login') }}</a></strong></p>
+						<div class="d-inline-flex">
+							<div class="align-self-center">
+								<p class="mb-0">{{ __('Already have an account?') }} <strong><a href="{{ route('frontend.login') }}">{{ __('login') }}</a></strong></p>
+							</div>
+							<div>
+								<a href="{{ url('authorized/google') }}">
+									<img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" style="margin-left: 3em;">
+								</a>
+							</div>
+							<div>
+								<a class="ml-1 btn btn-primary align-self-center" href="{{ url('fb/redirect') }}" style="padding: 12px 35px; background: #4c6ef5;color: #ffffff; height:40px; font-size: 10px;" id="btn-fblogin">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+										<path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+									  </svg> Login with Facebook
+								</a>
+							</div>
+						</div>
+
 						<div class="row">
 							<div class="col-md-12">
 								<div class="mb-3">
@@ -390,7 +407,18 @@ config(['cart.tax' => $tax_rate]);
 										
 										<tr><td colspan="2"><span class="title">{{ __('Shipping Fee') }} </span><span class="price">@php echo $ShippingFee; @endphp</span></td></tr>
 										<tr><td colspan="2"><span class="title">{{ __('Tax') }}</span><span class="price">{{ $tax }}</span></td></tr>
+										<tr><td colspan="2"><span class="title">{{ __('Discount') }}</span><span class="price" id="total-discount">{{$gtext['currency_icon']}}0.00</span></td></tr>
 										<tr><td colspan="2"><span class="total">{{ __('Total') }}</span><span class="total-price">@php echo $total; @endphp</span></td></tr>
+										<tr>
+											<td>
+												<span class="title">
+													<input id="coupon" data-products-amount={{ $_total_amount }} data-shipping-amount="{{ $_shippingFee }}" name="coupon" type="text" style="max-width:170px" placeholder="Coupon" class="form-control parsley-validated">
+												</span>
+											</td>
+											<td style="vertical-align: middle;">
+												<span class="price align-self-center" id="discountPercent"></span>
+											</td>
+										</tr>
 									</tbody>
 								</table>
 								@if(count($shipping_list)>0)
@@ -445,6 +473,7 @@ config(['cart.tax' => $tax_rate]);
 <script src="{{asset('public/frontend/js/parsley.min.js')}}"></script>
 
 <script type="text/javascript">
+var currency = "{{$gtext['currency_icon']}}";
 var theme_color = "{{ $gtext['theme_color'] }}";
 var site_name = "{{ $gtext['site_name'] }}";
 var validCardNumer = 0;

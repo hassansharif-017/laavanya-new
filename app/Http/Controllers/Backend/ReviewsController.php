@@ -103,18 +103,4 @@ class ReviewsController extends Controller
 		return response()->json($res);
 	}	
 
-	 //Review & Ratings page load
-	 public function getTestimonialsPageLoad() {
-
-		// $datalist = DB::table('reviews')
-		// 	->select('reviews.*', 'users.name', 'products.title', 'products.slug', 'products.id as product_id')
-		// 	->orderBy('reviews.id','desc')
-		// 	->paginate(20);
-		$datalist = Testimonial::orderBy('id','desc')
-		->paginate(20);
-		$media_datalist = Media_option::orderBy('id','desc')->paginate(28);
-
-
-        return view('backend.testimonials', compact('datalist', 'media_datalist'));
-    }
 }

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Tp_option;
 use App\Models\Media_setting;
+use Illuminate\Support\Facades\Cache;
 
 class SettingsController extends Controller
 {
@@ -29,6 +30,8 @@ class SettingsController extends Controller
 		if($id != ''){
 			$data['site_name'] = $option_value->site_name;
 			$data['site_title'] = $option_value->site_title;
+			$data['site_header_text_1'] = $option_value->site_header_text_1;
+			$data['site_header_text_2'] = $option_value->site_header_text_2;
 			$data['company'] = $option_value->company;
 			$data['email'] = $option_value->email;
 			$data['phone'] = $option_value->phone;
@@ -37,6 +40,8 @@ class SettingsController extends Controller
 		}else{
 			$data['site_name'] = '';
 			$data['site_title'] = '';
+			$data['site_header_text_1'] = '';
+			$data['site_header_text_2'] = '';
 			$data['company'] = '';
 			$data['email'] = '';
 			$data['phone'] = '';
@@ -59,6 +64,8 @@ class SettingsController extends Controller
 		$phone = $request->input('phone');
 		$site_name = $request->input('site_name');
 		$site_title = $request->input('site_title');
+		$site_header_text_1 = $request->input('site_header_text_1');
+		$site_header_text_2 = $request->input('site_header_text_2');
 		$address = $request->input('address');
 		$timezone = $request->input('timezone');
 
@@ -68,7 +75,9 @@ class SettingsController extends Controller
 			'phone' => $request->input('phone'),
 			'site_name' => $request->input('site_name'),
 			'address' => $request->input('address'),
-			'site_title' => $request->input('site_title')
+			'site_title' => $request->input('site_title'),
+			'site_header_text_1' => $request->input('site_header_text_1'),
+			'site_header_text_2' => $request->input('site_header_text_2')
 		);
 
 		$validator = Validator::make($validator_array, [
@@ -77,7 +86,9 @@ class SettingsController extends Controller
 			'phone' => 'required',
 			'site_name' => 'required',
 			'address' => 'required',
-			'site_title' => 'required'
+			'site_title' => 'required',
+			'site_header_text_1' => 'required',
+			'site_header_text_2' => 'required'
 		]);
 
 		$errors = $validator->errors();
@@ -111,6 +122,16 @@ class SettingsController extends Controller
 			$res['msg'] = $errors->first('site_title');
 			return response()->json($res);
 		}
+		if($errors->has('site_header_text_1')){
+			$res['msgType'] = 'error';
+			$res['msg'] = $errors->first('site_header_text_1');
+			return response()->json($res);
+		}
+		if($errors->has('site_header_text_2')){
+			$res['msgType'] = 'error';
+			$res['msg'] = $errors->first('site_header_text_2');
+			return response()->json($res);
+		}
 
 		if($errors->has('address')){
 			$res['msgType'] = 'error';
@@ -124,6 +145,8 @@ class SettingsController extends Controller
 			'phone' => $phone,
 			'site_name' => $site_name,
 			'site_title' => $site_title,
+			'site_header_text_1' => $site_header_text_1,
+			'site_header_text_2' => $site_header_text_2,
 			'address' => $address,
 			'timezone' => $timezone
 		);
@@ -158,6 +181,7 @@ class SettingsController extends Controller
 				$res['msg'] = __('Data update failed');
 			}
 		}
+		Cache::forget('generalSettings');
 
 		return response()->json($res);
     }

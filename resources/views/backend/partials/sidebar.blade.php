@@ -22,7 +22,7 @@
 				<li class="dnone"><a href="{{ route('backend.collections') }}">{{ __('Collections') }}</a></li>
 				<li><a href="{{ route('backend.attributes') }}">{{ __('Unit') }}</a></li>
 				<li class="dnone"><a href="{{ route('backend.labels') }}">{{ __('Labels') }}</a></li>
-				<li class="dnone"><a href="{{ route('backend.coupons') }}">{{ __('Coupons') }}</a></li>
+				<li><a href="{{ route('backend.coupons') }}">{{ __('Coupons') }}</a></li>
 				<li><a href="{{ route('backend.tax') }}">{{ __('Tax') }}</a></li>
 				<li><a href="{{ route('backend.currency') }}">{{ __('Currency') }}</a></li>
 				<li><a href="{{ route('backend.payment-methods') }}">{{ __('Payment Methods') }}</a></li>

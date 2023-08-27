@@ -111,6 +111,60 @@ $(function () {
 			}
 		});
 	}
+	function delay(callback, ms) {
+		var timer = 0;
+		return function() {
+		  var context = this, args = arguments;
+		  clearTimeout(timer);
+		  timer = setTimeout(function () {
+			callback.apply(context, args);
+		  }, ms || 0);
+		};
+	  }
+	  
+	  
+	  // Example usage:
+	  
+	  $('#coupon').on('keyup touchend', delay(function (e) {
+		var value = $(this).val();
+		if (value) {
+			$.ajax({
+				type : 'POST',
+				url: base_url + '/backend/validateCoupon',
+				data: 'coupon='+value + '&active=true',
+				success: function (res) {
+					if(res.status == true){
+						calculateAmounts(res.data.percentage);
+					}else{
+						calculateAmounts(null);
+						onErrorMsg(res.message);
+					
+					}
+				}
+			});
+		} else {
+			calculateAmounts(null);
+		}
+	  }, 500));
+
+	  function calculateAmounts(discount){
+		var productsAmount = $('#coupon').attr('data-products-amount');
+		var shippingAmount = $('#coupon').attr('data-shipping-amount');
+		var discountAmount = 0;
+		$('#discountPercent').text('');
+		$('#total-discount').text(currency + "0.00");
+		if (discount != null && parseFloat(discount) > 0) {
+			discountAmount = productsAmount * discount/100;
+			$('#discountPercent').text(parseFloat(discount).toFixed(2) + " % OFF");
+			$('#total-discount').text(currency + parseFloat(discountAmount).toFixed(2));
+		}
+
+		var totalAmount = parseFloat(productsAmount - discountAmount) + parseFloat(shippingAmount);
+
+		$('.total-price').text(currency + parseFloat(totalAmount).toFixed(2));
+
+
+	  }
 
 	$("#checkout_submit_form").on("click", function () {
 		

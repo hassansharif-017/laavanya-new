@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
+Route::get('authorized/google', [App\Http\Controllers\LoginWithGoogleController::class, 'redirectToGoogle']);
+Route::get('authorized/google/callback', [App\Http\Controllers\LoginWithGoogleController::class, 'handleGoogleCallback']);
+Route::get('fb/redirect', [App\Http\Controllers\LoginWithFacebookController::class, 'redirectFacebook']);
+Route::get('fb/callback', [App\Http\Controllers\LoginWithFacebookController::class, 'facebookCallback']);
+
+Route::get('/sitemap.xml', [App\Http\Controllers\SitemapXmlController::class, 'index']);
 
 Route::get('lang/{locale}', [App\Http\Controllers\LocalizationController::class, 'index']);
 
@@ -302,7 +308,14 @@ Route::prefix('backend')->group(function(){
 	Route::post('/bulkActionReviewRatings', [App\Http\Controllers\Backend\ReviewsController::class, 'bulkActionReviewRatings'])->name('backend.bulkActionReviewRatings')->middleware(['auth','is_admin']);
 
 	// Testimonials
-	Route::get('/testimonials', [App\Http\Controllers\Backend\ReviewsController::class, 'getTestimonialsPageLoad'])->name('backend.testimonials')->middleware(['auth','is_admin']);
+	Route::get('/testimonials', [App\Http\Controllers\Backend\TestimonialsController::class, 'getTestimonialsPageLoad'])->name('backend.testimonials')->middleware(['auth','is_admin']);
+	Route::get('/getTestimonialsTableData', [App\Http\Controllers\Backend\TestimonialsController::class, 'getTestimonialsTableData'])->name('backend.getTestimonialsTableData')->middleware(['auth','is_admin']);
+	Route::post('/saveTestimonialsData', [App\Http\Controllers\Backend\TestimonialsController::class, 'saveTestimonialsData'])->name('backend.saveTestimonialsData')->middleware(['auth','is_admin']);
+	Route::post('/getTestimonialsById', [App\Http\Controllers\Backend\TestimonialsController::class, 'getTestimonialsById'])->name('backend.getTestimonialsById')->middleware(['auth','is_admin']);
+	Route::post('/deleteTestimonials', [App\Http\Controllers\Backend\TestimonialsController::class, 'deleteTestimonials'])->name('backend.deleteTestimonials')->middleware(['auth','is_admin']);
+	Route::post('/bulkActionTestimonials', [App\Http\Controllers\Backend\TestimonialsController::class, 'bulkActionTestimonials'])->name('backend.bulkActionTestimonials')->middleware(['auth','is_admin']);
+
+
 	//Shipping
 	Route::get('/shipping', [App\Http\Controllers\Backend\ShippingController::class, 'getShippingPageLoad'])->name('backend.shipping')->middleware(['auth','is_admin']);
 	Route::get('/getShippingTableData', [App\Http\Controllers\Backend\ShippingController::class, 'getShippingTableData'])->name('backend.getShippingTableData')->middleware(['auth','is_admin']);
@@ -340,6 +353,7 @@ Route::prefix('backend')->group(function(){
 	Route::get('/getCouponsTableData', [App\Http\Controllers\Backend\CouponsController::class, 'getCouponsTableData'])->name('backend.getCouponsTableData')->middleware(['auth','is_admin']);
 	Route::post('/saveCouponsData', [App\Http\Controllers\Backend\CouponsController::class, 'saveCouponsData'])->name('backend.saveCouponsData')->middleware(['auth','is_admin']);
 	Route::post('/getCouponsById', [App\Http\Controllers\Backend\CouponsController::class, 'getCouponsById'])->name('backend.getCouponsById')->middleware(['auth','is_admin']);
+	Route::post('/validateCoupon', [App\Http\Controllers\Backend\CouponsController::class, 'validateCoupon'])->name('backend.validateCoupon')->middleware(['auth','is_admin']);
 	Route::post('/deleteCoupons', [App\Http\Controllers\Backend\CouponsController::class, 'deleteCoupons'])->name('backend.deleteCoupons')->middleware(['auth','is_admin']);
 	Route::post('/bulkActionCoupons', [App\Http\Controllers\Backend\CouponsController::class, 'bulkActionCoupons'])->name('backend.bulkActionCoupons')->middleware(['auth','is_admin']);
 
