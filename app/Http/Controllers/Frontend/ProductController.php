@@ -10,6 +10,8 @@ use App\Models\Related_product;
 use Illuminate\Http\Request;
 use App\Services\ProductsService;
 
+use function PHPUnit\Framework\throwException;
+
 class ProductController extends Controller
 {
 	public function __construct(protected ProductsService $productsService)
@@ -38,6 +40,9 @@ class ProductController extends Controller
 			->where('users.status_id', '=', 1)
 			->where('products.id', '=', $id)
 			->first();
+		if (!$data) {
+			abort(404, "Product was not found");
+		}
 		$Reviews = getReviews($data->id);
 		$data->TotalReview = $Reviews[0]->TotalReview;
 		$data->TotalRating = $Reviews[0]->TotalRating;
