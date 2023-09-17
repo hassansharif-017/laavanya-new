@@ -2,8 +2,10 @@
 
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
+use NitroPack\SDK\NitroPack;
 
 define('LARAVEL_START', microtime(true));
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +34,9 @@ if (file_exists(__DIR__.'/storage/framework/maintenance.php')) {
 */
 
 require __DIR__.'/vendor/autoload.php';
+
+$nitro = new NitroPack("nYvKbEMcmuYtVHodiTTTtnnUfzoLTZdZ", "6T24TC2qRWNLJkyjQlADTF4PP0Y8MywgFZjaQpxV97aI6IxSfjqY7M8Bm8sEO6a6");
+
 
 /*
 |--------------------------------------------------------------------------

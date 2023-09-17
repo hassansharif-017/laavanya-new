@@ -4,7 +4,9 @@
 @php $gtext = gtext(); @endphp
 
 @section('meta-content')
-	<meta name="robots" content="noindex">
+	@if(count($datalist) == 0)
+		<meta name="robots" content="noindex">
+	@endif
 	<meta name="keywords" content="{{ $metadata['og_keywords'] }}" />
 	<meta name="description" content="{{ $metadata['og_description'] }}" />
 	<meta property="og:title" content="{{ $metadata['og_title'] }}" />
