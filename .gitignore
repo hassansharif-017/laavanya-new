@@ -12,3 +12,5 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+libs/nitropack-sdk/nitropack_webhooks
+libs/nitropack-sdk/NitroPack/SDK/data/*
