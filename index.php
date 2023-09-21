@@ -2,14 +2,9 @@
 
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
-use NitroPack\SDK\NitroPack;
 
 define('LARAVEL_START', microtime(true));
 
-define("NITROPACK_HOME_URL", "https://laavanya-gracefullyyou.in");
-define("NITROPACK_SITE_ID", "nYvKbEMcmuYtVHodiTTTtnnUfzoLTZdZ");
-define("NITROPACK_SITE_SECRET", "6T24TC2qRWNLJkyjQlADTF4PP0Y8MywgFZjaQpxV97aI6IxSfjqY7M8Bm8sEO6a6");
-include_once 'libs/nitropack-sdk/bootstrap.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +17,8 @@ include_once 'libs/nitropack-sdk/bootstrap.php';
 |
 */
 
-if (file_exists(__DIR__.'/storage/framework/maintenance.php')) {
-    require __DIR__.'/storage/framework/maintenance.php';
+if (file_exists(__DIR__ . '/storage/framework/maintenance.php')) {
+    require __DIR__ . '/storage/framework/maintenance.php';
 }
 
 /*
@@ -37,9 +32,7 @@ if (file_exists(__DIR__.'/storage/framework/maintenance.php')) {
 |
 */
 
-require __DIR__.'/vendor/autoload.php';
-
-// $nitro = new NitroPack("nYvKbEMcmuYtVHodiTTTtnnUfzoLTZdZ", "6T24TC2qRWNLJkyjQlADTF4PP0Y8MywgFZjaQpxV97aI6IxSfjqY7M8Bm8sEO6a6");
+require __DIR__ . '/vendor/autoload.php';
 
 
 /*
@@ -53,7 +46,7 @@ require __DIR__.'/vendor/autoload.php';
 |
 */
 
-$app = require_once __DIR__.'/bootstrap/app.php';
+$app = require_once __DIR__ . '/bootstrap/app.php';
 
 $kernel = $app->make(Kernel::class);
 
