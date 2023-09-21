@@ -64,6 +64,10 @@ class ProductCategoryController extends Controller
 			->orderBy('products.id','desc')
 			->paginate($num);
 
+		if (count($datalist) == 0) {
+			abort(404, "Product was not found");
+		}
+
 		for($i=0; $i<count($datalist); $i++){
 			$Reviews = getReviews($datalist[$i]->id);
 			$datalist[$i]->TotalReview = $Reviews[0]->TotalReview;
