@@ -15,12 +15,7 @@
             <div class="row">
               <div class="order-1 col-sm-12 order-sm-1 col-md-6 order-md-0 col-lg-5 order-lg-0">
                 <div class="slider-content">
-                  
-                  @if($row->title == 'Muslin Print')
-                  <h1 style="color: #E4D79F">A Dream online fabric store in Gurgaon- Laavanya</h1>
-                  @else
-                  <h2 style="color: #E4D79F">{{ $row->title }}</h2>
-                  @endif
+                  <h1 style="color: #E4D79F">{{ $row->title }}</h1>
                   @if($aRow->sub_title != '')
                   <p style="color: #E4D79F" class="relative">{{ $aRow->sub_title }}</p>
                   @endif
@@ -63,7 +58,7 @@
               <div class="header">
 
                 <img class="svg-icon" src="public/media/flower-header.svg" alt="">
-                <h2>Our Best Seller</h2>
+                <h1>Our Best Seller</h1>
                 <img class="svg-icon" src="public/media/flower-header-right.svg" alt="">
                 <!-- <button style="position: absolute; right:2rem; top: 2rem;">VIEW ALL</button> -->
 
@@ -113,7 +108,7 @@
               <div class="header">
 
                 <img class="svg-icon" src="public/media/flower-header.svg" alt="">
-                <h2>Our Fabric Collection</h2>
+                <h1>Our Fabric Collection</h1>
                 <img class="svg-icon" src="public/media/flower-header-right.svg" alt="">
                 <!-- <button style="position: absolute; right:2rem; top: 2rem;">VIEW ALL</button> -->
               </div>
@@ -170,7 +165,7 @@
               <div class="header">
 
                 <img class="svg-icon" src="public/media/flower-header.svg" alt="">
-                <h2>Shop By Fabric</h2>
+                <h1>Shop By Fabric</h1>
                 <img class="svg-icon" src="public/media/flower-header-right.svg" alt="">
                 <!-- <button style="position: absolute; right:2rem; top: 2rem;">VIEW ALL</button> -->
               </div>
@@ -309,7 +304,7 @@
               <div class="header">
 
                 <img class="svg-icon" src="public/media/flower-header.svg" alt="">
-                <h2>Shop By Pattern</h2>
+                <h1>Shop By Pattern</h1>
                 <img class="svg-icon" src="public/media/flower-header-right.svg" alt="">
                 <!-- <button style="position: absolute; right:2rem; top: 2rem;">VIEW ALL</button> -->
 
@@ -460,7 +455,7 @@
               <div class="header">
 
                 <img class="svg-icon" src="public/media/flower-header.svg" alt="">
-                <h2>Shop By Colour</h2>
+                <h1>Shop By Colour</h1>
                 <img class="svg-icon" src="public/media/flower-header-right.svg" alt="">
                 <!-- <button style="position: absolute; right:2rem; top: 2rem;">VIEW ALL</button> -->
 
@@ -614,7 +609,7 @@
                 <div class="header">
 
                   <img style="width:90px" class="svg-icon" src="public/media/flower-header.svg" alt="">
-                  <h2>Client Reviews</h2>
+                  <h1>Client Reviews</h1>
                   <img style="width:90px" class="svg-icon" src="public/media/flower-header-right.svg" alt="">
                   <!-- <button style="position: absolute; right:2rem; top: 2rem;">VIEW ALL</button> -->
 
@@ -989,7 +984,7 @@
               <div class="header">
 
                 <img style="width:90px" class="svg-icon" src="public/media/flower-header.svg" alt="">
-                <h2>Our Journey</h2>
+                <h1>Our Journey</h1>
                 <img style="width:90px" class="svg-icon" src="public/media/flower-header-right.svg" alt="">
                 <!-- <button style="position: absolute; right:2rem; top: 2rem;">VIEW ALL</button> -->
 
