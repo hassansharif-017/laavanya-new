@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title', __('Home'))
+@section('title', __('A Dream online fabric store in Gurgaon- Laavanya'))
 @php 
 $PageVariation = PageVariation();
 $gtext = gtext();

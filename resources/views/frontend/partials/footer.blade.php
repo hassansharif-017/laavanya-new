@@ -80,7 +80,7 @@ $FooterSection = FooterSection();
 								@endif
 								@if($gtext['about_desc_footer'] != '')
 							<!--	<p>{{ $gtext['about_desc_footer'] }}</p>  -->
-							<p>Laavanya - Gracefully You is an exclusive house of fabric inspired by tradition, that goes beyond the ordinary to celebrate creativity. Choose from an array of high-quality fabric materials, traditional artistry & latest designs. </p> 
+							<p>Choose from the biggest collection of design fabrics with the best physical fabric store and online fabric shop in Gurgaon. Call us at 8700771761 </p> 
 								@endif
 							</div>
 						</div>
