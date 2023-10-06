@@ -6,6 +6,7 @@ use App\Models\Tp_option;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
@@ -51,13 +52,15 @@ class AppServiceProvider extends ServiceProvider
             url('order-tracking'),
         ];
 
-        if (!auth()->check() && !in_array(request()->url(), $excludeUrls)) {
 
-            define("NITROPACK_HOME_URL", "https://laavanya-gracefullyyou.in");
-            define("NITROPACK_SITE_ID", "nYvKbEMcmuYtVHodiTTTtnnUfzoLTZdZ");
-            define("NITROPACK_SITE_SECRET", "6T24TC2qRWNLJkyjQlADTF4PP0Y8MywgFZjaQpxV97aI6IxSfjqY7M8Bm8sEO6a6");
-            include_once 'libs/nitropack-sdk/bootstrap.php';
-        }
+        view()->composer('*', function ($view) {
+            if (!Auth::check() && !defined('NITROPACK_HOME_URL')) {
+                define("NITROPACK_HOME_URL", "https://laavanya-gracefullyyou.in");
+                define("NITROPACK_SITE_ID", "nYvKbEMcmuYtVHodiTTTtnnUfzoLTZdZ");
+                define("NITROPACK_SITE_SECRET", "6T24TC2qRWNLJkyjQlADTF4PP0Y8MywgFZjaQpxV97aI6IxSfjqY7M8Bm8sEO6a6");
+                include_once 'libs/nitropack-sdk/bootstrap.php';
+            }
+        });
 
         $generalSettings = Cache::rememberForever('generalSettings', function () {
             return json_decode(Tp_option::where('option_name', 'general_settings')->value('option_value'), true);
