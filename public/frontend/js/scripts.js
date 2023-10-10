@@ -1,4 +1,5 @@
 
+$('.tw-loader').delay(100).fadeOut('slow');
 (function ($) {
 	'use strict';
 
@@ -7,7 +8,7 @@
 	// win.on('load',function() {
 	// 	$('.tw-loader').delay(100).fadeOut('slow');
 	// });
-	$('.tw-loader').delay(100).fadeOut('slow');
+	// $('.tw-loader').delay(100).fadeOut('slow');
 	
 	//Menu active
 	var href = location.href;
