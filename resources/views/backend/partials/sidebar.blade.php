@@ -48,6 +48,7 @@
 		<li><a href="{{ route('backend.customers') }}"><i class="fa fa-users"></i>{{ __('Customers') }}</a></li>
 		<li><a href="{{ route('backend.review') }}"><i class="fa fa-recycle"></i>{{ __('Review & Ratings') }}</a></li>
 		<li><a href="{{ route('backend.testimonials') }}"><i class="fa fa-recycle"></i>{{ __('Testimonials') }}</a></li>
+		<li><a href="{{ route('backend.faqs') }}"><i class="fa fa-question-circle"></i>{{ __('FAQs') }}</a></li>
 		<li><a href="{{ route('backend.contact') }}"><i class="fa fa-envelope"></i>{{ __('Contact') }}</a></li>
 		<li class="dropdown"><a class="nav-link has-dropdown" href="#" data-toggle="dropdown"><i class="fa fa-paper-plane"></i>{{ __('Newsletters') }}</a>
 			<ul class="dropdown-menu">

@@ -275,6 +275,13 @@ a.scroll-to-top:hover {
 	width: 100%;
 }
 
+.accordion .accordion-button {
+	font-weight: 700;
+}
+.accordion .accordion-body {
+	color: black;
+}
+
 /* ======================
    Preloader css
    ====================== */

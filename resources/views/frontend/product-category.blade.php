@@ -143,6 +143,27 @@
 				</div>
 			</div>
 			@endif
+
+			
+			@if (count($globalFaq) > 0)
+			<h2 class="text-center mb-4 mt-5">Frequently Asked Questions</h2>
+			<div class="accordion" id="faqAccordion">
+				@foreach ($globalFaq as $indx => $faq)
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="headingOne{{$faq['id']}}">
+							<button class="accordion-button {{ $indx == 0? '' : 'collapsed'}}" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne{{$faq['id']}}" aria-expanded="{{ $indx == 0? 'true' : 'false'}}" aria-controls="collapseOne{{$faq['id']}}">
+							Question {{ $indx + 1}}: {{ $faq['question'] }}
+							</button>
+						</h2>
+						<div id="collapseOne{{$faq['id']}}" class="accordion-collapse collapse {{ $indx == 0? 'show' : ''}}" aria-labelledby="{{$faq['id']}}" data-bs-parent="#faqAccordion">
+							<div class="accordion-body">
+								<p class="mb-0">{{ $faq['answer'] }}</p>
+							</div>
+						</div>
+					</div>
+				@endforeach
+			</div>
+			@endif
 		</div>
 	</section>
 	<!-- /Inner Section/ -->

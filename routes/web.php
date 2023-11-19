@@ -315,6 +315,14 @@ Route::prefix('backend')->group(function(){
 	Route::post('/deleteTestimonials', [App\Http\Controllers\Backend\TestimonialsController::class, 'deleteTestimonials'])->name('backend.deleteTestimonials')->middleware(['auth','is_admin']);
 	Route::post('/bulkActionTestimonials', [App\Http\Controllers\Backend\TestimonialsController::class, 'bulkActionTestimonials'])->name('backend.bulkActionTestimonials')->middleware(['auth','is_admin']);
 
+	//Faq
+	Route::get('/faqs', [App\Http\Controllers\Backend\FAQController::class, 'getfaqsPageLoad'])->name('backend.faqs')->middleware(['auth','is_admin']);
+	Route::get('/getFaqsTableData', [App\Http\Controllers\Backend\FAQController::class, 'getFaqsTableData'])->name('backend.getFaqsTableData')->middleware(['auth','is_admin']);
+	Route::post('/saveFaqsData', [App\Http\Controllers\Backend\FAQController::class, 'saveFaqsData'])->name('backend.saveFaqsData')->middleware(['auth','is_admin']);
+	Route::post('/getFaqById', [App\Http\Controllers\Backend\FAQController::class, 'getFaqById'])->name('backend.getFaqById')->middleware(['auth','is_admin']);
+	Route::post('/deleteFaq', [App\Http\Controllers\Backend\FAQController::class, 'deleteFaq'])->name('backend.deleteFaq')->middleware(['auth','is_admin']);
+	Route::post('/bulkActionFaqs', [App\Http\Controllers\Backend\FAQController::class, 'bulkActionFaqs'])->name('backend.bulkActionFaqs')->middleware(['auth','is_admin']);
+
 
 	//Shipping
 	Route::get('/shipping', [App\Http\Controllers\Backend\ShippingController::class, 'getShippingPageLoad'])->name('backend.shipping')->middleware(['auth','is_admin']);

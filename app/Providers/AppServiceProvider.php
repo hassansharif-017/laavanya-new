@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Faq;
 use App\Models\Tp_option;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
@@ -65,8 +66,14 @@ class AppServiceProvider extends ServiceProvider
         $generalSettings = Cache::rememberForever('generalSettings', function () {
             return json_decode(Tp_option::where('option_name', 'general_settings')->value('option_value'), true);
         });
+        $globalFaq = Cache::rememberForever('globalFaq', function () {
+            return Faq::where('status', 'active')->orderBy('display_order', 'asc')->get()->toArray();
+        });
         View::composer('frontend.partials.header', function ($view) use ($generalSettings) {
             $view->with('generalSettings', $generalSettings);
+        });
+        View::composer('*', function ($view) use ($globalFaq) {
+            $view->with('globalFaq', $globalFaq);
         });
 
         Paginator::useBootstrap();
